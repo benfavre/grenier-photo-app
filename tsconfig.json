@@ -32,8 +32,9 @@
 
     /* Language and Environment */
     "jsx": "react",
-    "jsxFactory": "ElysiaJSX",
-    "jsxFragmentFactory": "ElysiaJSX.Fragment",
+    "jsxFactory": "Html.createElement",
+    "jsxFragmentFactory": "Html.Fragment",
+
     "lib": ["ESNext"],
     "moduleDetection": "force",
     "target": "ESNext",
