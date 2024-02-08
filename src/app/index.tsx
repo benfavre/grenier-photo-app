@@ -1,6 +1,6 @@
 import { html } from '@elysiajs/html';
 import { swagger } from '@elysiajs/swagger';
-import { SignIn, SignOut } from '../components/auth';
+// import { SignIn, SignOut } from '../components/auth';
 import { Layout } from '../components/Layout';
 import { getSession } from '../lib/auth';
 import { routes as apiRoutes } from './api';
@@ -14,7 +14,6 @@ export const app = new Elysia()
   // Plugins on all routes
   .use(swagger())
 
-  
   // Non-page routes
   .use(apiRoutes)
 
@@ -22,8 +21,6 @@ export const app = new Elysia()
   .use(html())
 
   .use(basicAuth())
-
-  .get('/private/realm-stored', ({ store }) => store.basicAuthRealm)
 
   // Page routes
   .use(todosRoutes)
