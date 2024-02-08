@@ -1,4 +1,4 @@
-import { Todo } from '~/db/schemas/todo';
+import { Todo } from '../../db/schemas/todo';
 
 export function TodoItem({ todo, enabled }: { todo: Todo; enabled: boolean }) {
   return (

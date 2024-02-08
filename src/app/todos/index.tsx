@@ -1,14 +1,15 @@
 import { eq } from 'drizzle-orm';
-import { insertTodoSchema, patchTodoSchema, todos } from '~/db/schemas/todo';
-import { isAuthenticated } from '~/hooks/isAuthenticated';
-import { getSession } from '~/lib/auth';
-import { db, idParamsSchema } from '~/lib/db';
-import { createElysia } from '~/util/elysia';
+import { insertTodoSchema, patchTodoSchema, todos } from '../../db/schemas/todo';
+import { isAuthenticated } from '../../hooks/isAuthenticated';
+import { getSession } from '../../lib/auth';
+import { db, idParamsSchema } from '../../lib/db';
 import { TodoForm, TodoItem, TodoList } from './components';
+import { Elysia } from 'elysia'
 
-export const routes = createElysia({ prefix: '/todos' })
+export const routes = new Elysia({ prefix: '/todos' })
   .get('/', async (ctx) => {
-    const session = await getSession(ctx.request);
+    // const session = await getSession(ctx.request);
+    const session = await getSession(ctx);
 
     const allTodos = await db.select().from(todos).all();
     return (

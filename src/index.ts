@@ -1,10 +1,10 @@
 import staticPlugin from '@elysiajs/static';
 import { app } from './app';
 import { env } from './env';
-import { createElysia } from './util/elysia';
 import { fixCtxRequest } from './util/fixCtxRequest';
+import { Elysia } from 'elysia';
 
-const server = createElysia()
+const server = new Elysia()
   .derive((ctx) => fixCtxRequest(ctx.request))
 
   // Plugins that aren't compatible with the edge

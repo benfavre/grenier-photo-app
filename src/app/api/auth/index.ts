@@ -1,8 +1,9 @@
 import { Auth } from '@auth/core';
-import { authConfig } from '~/lib/auth';
-import { createElysia } from '~/util/elysia';
+import { authConfig } from '../../../lib/auth';
+import { Elysia } from 'elysia'
 
-export const routes = createElysia({ prefix: '/auth' })
+// createElysia()
+export const routes = new Elysia({ prefix: '/auth' })
   .get('/*', async (ctx) => {
     const res = await Auth(ctx.request, authConfig);
     return res;

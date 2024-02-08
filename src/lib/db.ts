@@ -1,9 +1,9 @@
 import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
 import { t } from 'elysia';
-import * as authSchemas from '~/db/schemas/auth';
-import * as todoSchemas from '~/db/schemas/todo';
-import { env } from '~/env';
+import * as authSchemas from '../db/schemas/auth';
+import * as todoSchemas from '../db/schemas/todo';
+import { env } from '../env';
 
 const client = createClient({
   url: env.DB_URL,

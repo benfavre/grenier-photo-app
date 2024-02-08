@@ -3,8 +3,8 @@ import GitHub from '@auth/core/providers/github';
 import { Session } from '@auth/core/types';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { and, eq } from 'drizzle-orm';
-import { accounts, users } from '~/db/schemas/auth';
-import { env } from '~/env';
+import { accounts, users } from '../db/schemas/auth';
+import { env } from '../env';
 import { db } from './db';
 
 // https://github.com/nextauthjs/next-auth/issues/8377#issuecomment-1694720111
@@ -46,21 +46,30 @@ export const authConfig: AuthConfig = {
 /**
  * Roundabout way to get the session since @auth/core doesn't export it
  */
-export const getSession = async (request: Request) => {
-  try {
-    const url = `${new URL(request.url).origin}/api/auth/session`;
+// export const getSession = async (request: Request) => {
+//   try {
+//     const url = `${new URL(request.url).origin}/api/auth/session`;
 
-    const session = await Auth(
-      new Request(url, {
-        method: 'GET',
-        headers: request.headers,
-      }),
-      authConfig
-    );
+//     const session = await Auth(
+//       new Request(url, {
+//         method: 'GET',
+//         headers: request.headers,
+//       }),
+//       authConfig
+//     );
 
-    const sessionJson = (await session.json()) as Session;
-    return sessionJson;
-  } catch (err) {
-    return null;
+//     const sessionJson = (await session.json()) as Session;
+//     return sessionJson;
+//   } catch (err) {
+//     return null;
+//   }
+// };
+export const getSession = async (ctx: any) => {
+  // get basicAuthUser from store
+  const basicAuthUser = ctx.store.basicAuthUser || null;
+  if (basicAuthUser) {
+    return {
+      user: basicAuthUser
+    }
   }
-};
+}
