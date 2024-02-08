@@ -5,7 +5,7 @@ export default {
   out: './src/db/migrations',
   driver: 'turso',
   dbCredentials: {
-    url: process.env.DB_URL || "file:./db.sqlite?mode=memory&cache=shared",
+    url: process.env.DB_URL || 'file:./db.sqlite',
     authToken: process.env.DB_AUTH_TOKEN,
   },
   verbose: true,

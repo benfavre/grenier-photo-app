@@ -28,7 +28,7 @@ export const app = createElysia()
           {session ? (
             <SignOut />
           ) : (
-            <SignIn innerText='Sign in to modify todos' />
+            <SignIn innerText='Se connecter' />
           )}
           <div class='py-3'></div>
           <div hx-get='/todos' hx-trigger='load' hx-swap='innerHTML'></div>
